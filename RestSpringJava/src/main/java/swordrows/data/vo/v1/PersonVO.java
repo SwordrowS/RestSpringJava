@@ -3,6 +3,9 @@ package swordrows.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,12 +14,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
+//@JsonPropertyOrder({"id", "First Name", "lastName", "address", "gender"})
 public class PersonVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 
 	private Long id;
+	//@JsonProperty("First Name")
 	private String firstName;
 	private String lastName;
 	private String address;
