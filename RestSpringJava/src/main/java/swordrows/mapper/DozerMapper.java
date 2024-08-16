@@ -3,12 +3,23 @@ package swordrows.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.dozermapper.core.DozerBeanMapperBuilder;
-import com.github.dozermapper.core.Mapper;
+import org.modelmapper.ModelMapper;
+
+
+import swordrows.data.vo.v1.PersonVO;
+import swordrows.models.Person;
 
 public class DozerMapper {
 	
-	private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+	private static ModelMapper mapper = new ModelMapper();
+	
+	static {
+		mapper.createTypeMap(Person.class, PersonVO.class)
+		.addMapping(Person::getId, PersonVO::setKey);
+		mapper.createTypeMap(PersonVO.class, Person.class)
+		.addMapping(PersonVO::getKey, Person::setId);
+		
+	}
 	
 	public static <O, D> D parseObject(O origin, Class<D> destination) {
 		

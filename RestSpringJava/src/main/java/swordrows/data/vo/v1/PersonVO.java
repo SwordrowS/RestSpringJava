@@ -7,15 +7,6 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.github.dozermapper.core.Mapping;
-
-import jakarta.annotation.Generated;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"})
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable{
@@ -33,8 +24,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
 	public PersonVO() {}
 
 	
-	@JsonProperty("id")
-	@Mapping("id")	
+	@JsonProperty("id")	
 	public Long getKey() {
 		return key;
 	}
