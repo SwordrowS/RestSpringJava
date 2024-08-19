@@ -12,8 +12,6 @@ import swordrows.data.vo.v1.BookVO;
 import swordrows.exceptions.RequiredObjectIsNullException;
 import swordrows.exceptions.ResourceNotFoundException;
 import swordrows.mapper.BookModelMapper;
-import swordrows.mapper.BookModelMapper;
-//import swordrows.mapper.custom.BookMapper;
 import swordrows.models.Book;
 import swordrows.repositories.BookRepository;
 
@@ -25,11 +23,7 @@ public class BookServices {
 
 	
 	@Autowired
-	BookRepository repository;
-	
-	//@Autowired
-	//BookMapper mapper;
-	
+	BookRepository repository;	
 	
 	public List<BookVO> findAll() {
 		logger.info("Finding all Book!");
