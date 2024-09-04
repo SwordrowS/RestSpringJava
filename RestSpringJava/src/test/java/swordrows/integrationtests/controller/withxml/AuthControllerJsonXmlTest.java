@@ -1,4 +1,4 @@
-package swordrows.integrationtests.controller.withyml;
+package swordrows.integrationtests.controller.withxml;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertNotNull;
