@@ -1,5 +1,9 @@
 package swordrows.integrationtests.controller.withyml.mapper;
 
+
+
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -12,6 +16,8 @@ import io.restassured.mapper.ObjectMapperSerializationContext;
 
 public class YMLMapper implements ObjectMapper{
 
+	private Logger logger = Logger.getLogger(YMLMapper.class.getName());
+	
 	private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
 	protected TypeFactory typeFactory;
 	
@@ -29,10 +35,13 @@ public class YMLMapper implements ObjectMapper{
 		try {
 			String dataToDeserialize = context.getDataToDeserialize().asString();
 			Class type = (Class) context.getType();
+			logger.info("Trying to deserialize object: " + type);
 			return objectMapper.readValue(dataToDeserialize, typeFactory.constructType(type));
 		} catch (JsonMappingException e) {
+			logger.severe("Error deserializing object");
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
+			logger.severe("Error deserializing object");
 			e.printStackTrace();
 		}
 		return null;
