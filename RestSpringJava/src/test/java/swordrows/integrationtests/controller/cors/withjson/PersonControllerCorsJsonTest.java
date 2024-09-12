@@ -50,6 +50,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest{
 		person.setLastName("Parker");
 		person.setAddress("New York");
 		person.setGender("Male");
+		person.setEnabled(true);
 	}
 	
 	@BeforeAll

@@ -18,7 +18,7 @@ public class App {
 	
        Map<String, PasswordEncoder> encoders = new HashMap<>();
         
-        Pbkdf2PasswordEncoder pbkdf2Encoder =
+       /* Pbkdf2PasswordEncoder pbkdf2Encoder =
         		new Pbkdf2PasswordEncoder(
     				"", 8, 185000,
     				SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
@@ -30,7 +30,7 @@ public class App {
         String result1 = passwordEncoder.encode("admin123");
         String result2 = passwordEncoder.encode("admin234");
         System.out.println("My hash result1 " + result1);
-        System.out.println("My hash result2 " + result2);
+        System.out.println("My hash result2 " + result2);*/
         
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import swordrows.controllers.PersonController;
 import swordrows.data.vo.v1.PersonVO;
 import swordrows.data.vo.v2.PersonVOV2;
@@ -52,6 +53,7 @@ public class PersonServices {
 		return vo;
 	}
 	
+	
 	public PersonVO create(PersonVO person) {
 		
 		if (person == null) throw new RequiredObjectIsNullException();
@@ -89,6 +91,20 @@ public class PersonServices {
 		var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 		vo.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(
 				PersonController.class).findById(vo.getKey())).withSelfRel());
+		return vo;
+	}
+	
+	
+	@Transactional
+	public PersonVO disablePerson(Long id) {
+		logger.info("Finding one PersonVO!");
+		repository.disablePerson(id);
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No Records Found For This ID"));
+		
+		PersonVO vo = DozerMapper.parseObject(entity, PersonVO.class);
+		vo.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(
+				PersonController.class).findById(id)).withSelfRel());
 		return vo;
 	}
 	
